@@ -1,4 +1,4 @@
 # busa-checkout
 checkout page using Angular and Node
 
-<img src="http://www.cutepandapictures.com/wp-content/uploads/2013/08/CutePandababy.jpg" />
+<img src="http://s11.postimg.org/ghpdf0tir/screenshop.png" />

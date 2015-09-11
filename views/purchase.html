@@ -1,0 +1,332 @@
+<!-- Header Start -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<ol id="cart_crumbs">
+			<li class="now"><span>お客様情報入力</span></li>
+			<li><span>内容の確認</span</li>
+			<li><span>ご注文完了</span</li>
+		</ol>
+	</div>
+</div>
+<!-- Header End -->
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
+	
+		<!-- Purchase Products Start -->
+		<h5 class="title">{{ lang.purchase_product[dlang] }}</h5>
+		<div class="row">
+			<div class="col-xs-3 col-sm-3">
+				<img ng-src="{{ product_img }}" alt="PDF titles" class="img-thumbnail">
+			</div>
+			<div class="col-xs-9 col-sm-9">
+				<h2 class="title">{{ product_name }}</h2>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<ul class="desc">
+							<li ng-repeat="pd in product_desc">{{ pd }}</li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<p class="price">金額 : <strong>{{ product_amount_with_comma }} yen</strong>(税込) = {{ product_currency }}{{ product_amount }}</p>
+					</div>
+				</div><!-- /row End -->
+				
+			</div>
+		</div><!-- /row End -->
+		<!-- Purchase Products End -->
+	
+	</div><!-- /container End -->
+</div><!-- /jumbotron End -->
+
+<div class="container">
+
+<!-- Input Form Start -->
+<h3 class="title">お客様情報の入力<br><span>ご購入手続きを進めるには、以下のフォームを入力してください。</span></h3>
+
+<!-- Input Error Alart Start -->
+<div class="alert alert-danger" role="alert" style="display:none"></div>
+<!-- Input Error Alart End -->
+
+
+<form role="form" class="form-horizontal" novalidate>
+
+	<h4>{{ lang.personal_info[dlang] }}</h4>
+	<div class="form-group"><!-- Input error : add class name has-error -->
+		<label for="c_name" class="col-sm-3 control-label">{{ lang.your_name[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="text" data-ng-model="newCustomer.c_name" ng-change="updateName()" size="25" autocomplete="off" class="form-control" placeholder="あなたのお名前を入力" required>
+			<span id="c_name" class="help-block"></span><!-- Input error : only show this message when input error -->
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 山田太郎</span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_email" class="col-sm-3 control-label">{{ lang.email[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="email" data-ng-model="newCustomer.c_email" size="25" autocomplete="off" class="form-control" placeholder="メールアドレスを入力" required>
+			<span id="c_email" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: yamada@mail.com</span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_email2" class="col-sm-3 control-label">{{ lang.reinput_email[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="email" data-ng-model="newCustomer.c_email2" size="25" autocomplete="off" class="form-control" placeholder="メールアドレスを入力" required>
+			<span id="c_email2" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block"></span>
+		</div>
+	</div><!-- .form-group -->
+
+
+
+	<h4>{{ lang.credit_card_info[dlang] }}</h4>
+	<div class="form-group">
+		<label for="c_cardtype" class="col-sm-3 control-label">{{ lang.card_type[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<select data-ng-model="newCustomer.c_cardType" class="form-control" required>
+				<option value="Visa">Visa</option>
+				<option value="Master">MasterCard</option>
+			</select>
+		</div>
+		<div class="col-sm-3">
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_cardNumber" class="col-sm-3 control-label">{{ lang.card_number[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="tel" data-ng-model="newCustomer.c_cardNumber" size="25" autocomplete="off" class="form-control" placeholder="半角数字のみ (ハイフンなし)" required>
+			<span id="c_cardNumber" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 5262********4040</span>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<label for="c_cardCvc" class="col-sm-3 control-label">{{ lang.cvc_number[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="tel" data-ng-model="newCustomer.c_cardCvc" size="25" autocomplete="off" class="form-control" placeholder="半角数字のみ" required>
+			<span id="c_cardCvc" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block"><a>セキュリティーコードについて</a></span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_cardHolder" class="col-sm-3 control-label">{{ lang.holder_name[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="text" data-ng-model="newCustomer.c_cardHolder" ng-change="upCase()" class="form-control" placeholder="カード名義人" required>
+			<span id="c_cardHolder" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: TARO YAMADA</span>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="c_cardMonth" class="col-sm-3 control-label">{{ lang.expire_date[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+
+			<div class="row">
+				<div class="col-xs-6">
+					<select data-ng-model="newCustomer.c_cardMonth" title="月" class="form-control inline" required>
+						<option value="01" selected="selected">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+						<option value="07">07</option>
+						<option value="08">08</option>
+						<option value="09">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+					<span id="c_cardMonth" class="help-block"></span>
+				</div>
+				<div class="col-xs-6">
+					<select data-ng-model="newCustomer.c_cardYear" title="年" class="form-control inline" required>
+						<option ng-repeat="yr in years_range" value="{{ yr }}">{{ yr }}</option>
+					</select>
+					<span id="c_cardYear" class="help-block"></span>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 06 / 2015</span>
+		</div>
+	</div><!-- .form-group -->
+	
+
+	<h4>{{ lang.billing_info[dlang] }}</h4>
+
+	<div class="form-group">
+		<label for="c_billingName" class="col-sm-3 control-label">{{ lang.your_name[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="text" data-ng-model="newCustomer.c_billingName" class="form-control" placeholder="請求先のお名前" required>
+			<span id="c_billingName" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 山田太郎</span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_billingPostal" class="col-sm-3 control-label">{{ lang.postal_code[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="tel" data-ng-model="newCustomer.c_billingPostal" class="form-control" maxlength="10" placeholder="半角数字7桁 (ハイフンなし)" required>
+			<span id="c_billingPostal" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 1076231</span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="c_billingCity" class="col-sm-3 control-label">{{ lang.city[dlang] }}<span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+
+<select data-ng-model="newCustomer.c_billingCity" title="月" class="form-control" required>
+	<option value="" selected="selected">都道府県を選択</option>
+	<optgroup label="北海道">
+		<option value="1">北海道</option>
+	</optgroup>
+	<optgroup label="東北">
+		<option value="2">青森県</option>
+		<option value="3">岩手県</option>
+		<option value="4">宮城県</option>
+		<option value="5">秋田県</option>
+		<option value="6">山形県</option>
+		<option value="7">福島県</option>
+	</optgroup>
+	<optgroup label="関東">
+		<option value="8">茨城県</option>
+		<option value="9">栃木県</option>
+		<option value="10">群馬県</option>
+		<option value="11">埼玉県</option>
+		<option value="12">千葉県</option>
+		<option value="13">東京都</option>
+		<option value="14">神奈川県</option>
+	</optgroup>
+	<optgroup label="中部">
+		<option value="15">新潟県</option>
+		<option value="16">富山県</option>
+		<option value="17">石川県</option>
+		<option value="18">福井県</option>
+		<option value="19">山梨県</option>
+		<option value="20">長野県</option>
+		<option value="21">岐阜県</option>
+		<option value="22">静岡県</option>
+		<option value="23">愛知県</option>
+	</optgroup>
+	<optgroup label="近畿">
+		<option value="24">三重県</option>
+		<option value="25">滋賀県</option>
+		<option value="26">京都府</option>
+		<option value="27">大阪府</option>
+		<option value="28">兵庫県</option>
+		<option value="29">奈良県</option>
+		<option value="30">和歌山県</option>
+	</optgroup>
+	<optgroup label="中国">
+		<option value="31">鳥取県</option>
+		<option value="32">島根県</option>
+		<option value="33">岡山県</option>
+		<option value="34">広島県</option>
+		<option value="35">山口県</option>
+	</optgroup>
+	<optgroup label="四国">
+		<option value="36">徳島県</option>
+		<option value="37">香川県</option>
+		<option value="38">愛媛県</option>
+		<option value="39">高知県</option>
+	</optgroup>
+	<optgroup label="九州">
+		<option value="40">福岡県</option>
+		<option value="41">佐賀県</option>
+		<option value="42">長崎県</option>
+		<option value="43">熊本県</option>
+		<option value="44">大分県</option>
+		<option value="45">宮崎県</option>
+		<option value="46">鹿児島県</option>
+	</optgroup>
+	<optgroup label="沖縄">
+		<option value="47">沖縄県</option>
+	</optgroup>
+</select>
+
+
+			<span id="c_billingCity" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 東京都</span>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="c_billingAddress1" class="col-sm-3 control-label">{{ lang.address[dlang] }} <span class="label label-danger">{{ lang.required[dlang] }}</span></label>
+		<div class="col-sm-6">
+			<input type="text" data-ng-model="newCustomer.c_billingAddress1" class="form-control" placeholder="市区町村、番地など" required>
+			<span id="c_billingAddress1" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">例: 港区赤坂2-6-1</span>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="c_billingAddress2" class="col-sm-3 control-label">{{ lang.apartment[dlang] }} </label>
+		<div class="col-sm-6">
+			<input type="text" data-ng-model="newCustomer.c_billingAddress2" class="form-control" placeholder="アパート名や建物名など">
+			<span id="c_billingAddress2" class="help-block"></span>
+		</div>
+		<div class="col-sm-3">
+			<span class="help-block">建物名など（任意）</span>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+
+			<p class="desc">入力内容にお間違いがないかご確認のうえ「確認画面へ進む」をクリックしてください。</p>
+
+			<button class="btn btn-lg btn-primary confirm-btn" data-ng-click="addCustomer()">{{ lang.confirm_button_text[dlang] }}</button>
+		</div>
+	</div><!-- .form-group -->
+</form>
+<!-- Input Form End -->
+
+<!-- Attention Start -->
+<div id="attention" class="attention-area">
+	<ul>
+		<li>※ 間違ったメールアドレスを入力されると、注文完了メール・発送メール等がお受け取りになれません。</li>
+		<li>※ 携帯メールアドレスをご登録いただく場合、busayari1.netからのドメイン着信許可を設定してください。</li>
+	</ul>
+</div>
+<!-- /#attention End -->
+
+</div><!-- .container -->
+
+<footer>
+	<ul>
+		<li><a href="#">特定商取引法に基づく表示</a></li>
+		<li><a href="#">個人情報保護方針</a></li>
+	</ul>
+	<p>COPYRIGHT &copy; BUSAYARI1.NET ALL RIGHTS RESERVED.</p>
+
+</footer>
+

@@ -1,0 +1,147 @@
+<!-- Header Start -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<ol id="cart_crumbs">
+			<li><span>お客様情報入力</span></li>
+			<li class="now"><span>内容の確認</span</li>
+			<li><span>ご注文完了</span</li>
+		</ol>
+	</div>
+</div>
+<!-- Header End -->
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
+	
+		<!-- Purchase Products Start -->
+		<h5 class="title">{{ lang.purchase_product[dlang] }}</h5>
+		<div class="row">
+			<div class="col-xs-3 col-sm-3">
+				<img src="/img/pdf_image.jpg" alt="PDF titles" class="img-thumbnail">
+			</div>
+			<div class="col-xs-9 col-sm-9">
+				<h2 class="title">{{ product_name }}</h2>
+				
+				<div class="row">
+					<div class="col-xs-12 col-sm-6">
+						<ul class="desc">
+							<li ng-repeat="pd in product_desc">{{ pd }}</li>
+						</ul>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<p class="price">合計金額 : <strong>{{ product_amount_with_comma }} yen</strong>(税込) = {{ product_currency }}{{ product_amount }}</p>
+					</div>
+				</div><!-- /row End -->
+				
+			</div>
+		</div><!-- /row End -->
+		<!-- Purchase Products End -->
+	
+	</div><!-- /container End -->
+</div><!-- /jumbotron End -->
+
+<div class="container">
+
+<!-- Input Form Start -->
+<h3 class="title">お客様情報の確認<br><span>以下の内容にお間違いがないかご確認のうえ、購入手続きを完了してください。</span></h3>
+<form role="form" class="form-horizontal">
+
+	<h4>{{ lang.personal_info[dlang] }}</h4>
+	<div class="form-group">
+		<label for="Personalname" class="col-sm-3 control-label">{{ lang.your_name[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_name }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Personalmail" class="col-sm-3 control-label">{{ lang.email[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_email }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<h4>お支払い方法 - Credit Card Information -</h4>
+	<div class="form-group">
+		<label for="Cardtype" class="col-sm-3 control-label">{{ lang.card_type[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static text-uppercase">{{ customer.c_cardType }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardnumber" class="col-sm-3 control-label">{{ lang.card_number[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_cardNumber }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<label for="CVCNumber" class="col-sm-3 control-label">{{ lang.card_type[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">***</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardholder" class="col-sm-3 control-label">{{ lang.holder_name[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static text-uppercase">{{ customer.c_cardHolder }}</p>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="CardMonth" class="col-sm-3 control-label">{{ lang.expire_date[dlang] }}</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_cardMonth }} / {{ customer.c_cardYear }}</p>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label">{{ lang.billing_info[dlang] }}</label>
+		<div class="col-sm-9">
+			<address class="form-control-static">
+			  <strong>{{  customer.c_billingName }}</strong><br>
+			  〒{{ customer.c_billingPostal }}<br>
+			  {{ customer.c_billingState }}{{  customer.c_billingAddress1 }}<br>
+			  {{ customer.c_billingAddress2 }}<br>
+			</address>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+
+			<p class="desc"><a href="#">利用規約</a> / <a href="#">個人情報保護方針</a> をお読みいただき、同意のうえ「購入手続きを完了する」をクリックしてください。</p>
+
+			<button class="btn btn-lg btn-primary confirm-btn" data-ng-click="checkout()">{{ lang.purchase[dlang] }}</button>
+			<a class="btn btn-lg btn-default" href="#/purchase">{{ lang.go_back[dlang] }}</a>
+		</div>
+	</div><!-- .form-group -->
+
+</form>
+<!-- Input Form End -->
+
+<!-- Attention Start -->
+<div id="attention" class="attention-area">
+	<ul>
+		<li>※ 間違ったメールアドレスを入力されると、注文完了メール・発送メール等がお受け取りになれません。</li>
+		<li>※ 携帯メールアドレスをご登録いただく場合、busayari1.netからのドメイン着信許可を設定してください。</li>
+	</ul>
+</div>
+<!-- /#attention End -->
+
+</div><!-- .container -->
+
+<footer>
+	<ul>
+		<li><a href="#">特定商取引法に基づく表示</a></li>
+		<li><a href="#">個人情報保護方針</a></li>
+	</ul>
+	<p>COPYRIGHT &copy; BUSAYARI1.NET ALL RIGHTS RESERVED.</p>
+
+</footer>

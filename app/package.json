@@ -1,0 +1,14 @@
+{
+	"name" : "busayari",
+	"version" : "1.0.0",
+	"author" : "Rudem Labial jd5688@gmail.com",
+	"dependencies": {
+		"express": "4.9.0",
+		"mysql": "*",
+		"body-parser": "1.10.1",
+		"cors": "2.5.2",
+		"mime": "*",
+		"nodemailer": "0.7.0",
+		"soap": "0.6.1"
+	}
+}

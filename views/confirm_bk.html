@@ -1,0 +1,94 @@
+<h1>This is confirm page</h1>
+
+<!-- Purchase Products Start -->
+<h4>Purchase Products</h4>
+<div class="row">
+  <div class="col-xs-12 col-sm-3">
+	  <img src="..." alt="..." class="img-thumbnail">
+  </div>
+  <div class="col-xs-12 col-sm-9">
+	  <p class="lead">PDF titles</p>
+	  <p class="lead">Price : $199.00</p>
+	  <p class="">PDF Description</p>
+  </div>
+</div>
+<!-- Purchase Products End -->
+
+<!-- Input Form Start -->
+<form role="form" class="form-horizontal">
+
+	<h4>Personal Information</h4>
+	<div class="form-group">
+		<label for="Personalname" class="col-sm-3 control-label">Your Name</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_name }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Personalmail" class="col-sm-3 control-label">E-mail</label>
+		<div class="col-sm-9">
+			<p class="form-control-static text-uppercase">{{ customer.c_email }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<h4>Credit Card Information</h4>
+	<div class="form-group">
+		<label for="Cardtype" class="col-sm-3 control-label">Card Type</label>
+		<div class="col-sm-9">
+			<p class="form-control-static text-uppercase">{{ customer.c_cardType }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardnumber" class="col-sm-3 control-label">Card Number</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_cardNumber }}</p>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<label for="CVCNumber" class="col-sm-3 control-label">CVC Number</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">***</p>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardholder" class="col-sm-3 control-label">Card Holder Name</label>
+		<div class="col-sm-9">
+			<p class="form-control-static text-uppercase">{{ customer.c_cardHolder }}</p>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="CardMonth" class="col-sm-3 control-label">Expire Date</label>
+		<div class="col-sm-9">
+			<p class="form-control-static">{{ customer.c_cardMonth }} / {{ customer.c_cardYear }}</p>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label">Billing Address</label>
+		<div class="col-sm-9">
+			<address class="form-control-static">
+			  <strong>山田太郎</strong><br>
+			  {{  customer.c_billingAddress1 }}<br>
+			  {{ customer.c_billingAddress2 }}{{ comma }}{{ customer.c_billingState }} {{ customer.c_billingPostal }}<br>
+			  {{ customer.c_billingTel }}
+			</address>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+			<button class="btn btn-primary" data-ng-click="checkout()">Purchase Button</button>
+			<a class="btn btn-default" href="#/purchase">go back</a>
+		</div>
+	</div><!-- .form-group -->
+
+</form>
+<!-- Input Form End -->

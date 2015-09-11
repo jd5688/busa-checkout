@@ -1,0 +1,104 @@
+<!-- Header Start -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="container">
+		<ol id="cart_crumbs">
+			<li><span>お客様情報入力</span></li>
+			<li><span>内容の確認</span</li>
+			<li class="now"><span>ご注文完了</span</li>
+		</ol>
+	</div>
+</div>
+<!-- Header End -->
+
+<div class="container">
+
+	<div id="page-content">
+		<div>
+			<div class="downloading-title">お買い求めいただきありがとうございます</div>
+			<div class="downloading-message">商品の購入が完了しました。<br>商品をダウンロード開始するには、下のダウンロードボタンをクリックしてください。</div>
+		</div>
+		<div class="dl-button">
+			<button type="button" class="btn btn-success btn-lg btn-block" data-ng-click="download()">商品をダウンロード - PDF Download -</button>
+		</div>
+		<div class="dl-message">
+			ダウンロード可能回数 : 残り {{ download_count }} 回<br>
+			ダウンロード有効期限 : {{ download_expire }}
+		</div>
+	</div><!-- #page-content End -->
+
+	<div id="receipt-content">
+
+		<h3 class="title">購入レシート<br><span>以下の購入レシートを大切に保存してください。</span></h3>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Product Name</th>
+					<th class="text-right">Amount</th>
+					<th class="text-right">Price</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<p>
+							{{ c_product_name }}<br>
+							商品ID : {{ c_product_id }}
+						</p>
+					</td>
+					<td class="text-right">1</td>
+					<td class="text-right">¥{{ c_pdf_amount_yen }}</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="text-right">送料</td>
+					<td class="text-right">0</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="text-right"><strong>{{ lang.total_price[dlang] }}</strong></td>
+					<td class="text-right"><strong>¥{{ c_pdf_amount_yen }}</strong></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ご購入者情報</th>
+					<th class="text-right"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>{{ lang.purchase_id[dlang] }}</th>
+					<td>{{ tx_id }}</td>
+				</tr>
+				<tr>
+					<th>{{ lang.your_name[dlang] }}</th>
+					<td>{{ customer.c_name }}</td>
+				</tr>
+				<tr>
+					<th>{{ lang.payment_type[dlang] }}</th>
+					<td>{{ lang.credit_card[dlang] }}<br>
+						{{ customer.c_cardType }}<br>
+						{{ customer.c_cardNumber.substr(0,4) }}********{{ customer.c_cardNumber.substr(-4,4) }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+
+	</div>
+
+</div><!-- .container -->
+
+<footer>
+	<ul>
+		<li><a href="#">特定商取引法に基づく表示</a></li>
+		<li><a href="#">個人情報保護方針</a></li>
+	</ul>
+	<p>COPYRIGHT &copy; BUSAYARI1.NET ALL RIGHTS RESERVED.</p>
+
+</footer>
+

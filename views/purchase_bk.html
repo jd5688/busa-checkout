@@ -1,0 +1,165 @@
+<h1>This is input info page</h1>
+
+<!-- Purchase Products Start -->
+<h4>Purchase Products</h4>
+<div class="row">
+  <div class="col-xs-12 col-sm-3">
+	  <img ng-src="..." alt="..." class="img-thumbnail">
+  </div>
+  <div class="col-xs-12 col-sm-9">
+	  <p class="lead">PDF titles</p>
+	  <p class="lead">Price : $199.00</p>
+	  <p class="">PDF Description</p>
+  </div>
+</div>
+<!-- Purchase Products End -->
+
+<!-- Input Form Start -->
+<form role="form" class="form-horizontal">
+
+	<h4>Personal Information</h4>
+	<div class="form-group">
+		<label for="Personalname" class="col-sm-3 control-label">Your Name</label>
+		<div class="col-sm-9">
+			<input type="text" data-ng-model="newCustomer.c_name" size="25" autocomplete="off" class="form-control" placeholder="あなたのお名前" required>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Personalmail" class="col-sm-3 control-label">E-mail</label>
+		<div class="col-sm-9">
+			<input type="email" data-ng-model="newCustomer.c_email" size="25" autocomplete="off" class="form-control" placeholder="メールアドレス" required>
+		</div>
+	</div><!-- .form-group -->
+
+
+
+	<h4>Credit Card Information</h4>
+	<div class="form-group">
+		<label for="Cardtype" class="col-sm-3 control-label">Card Type</label>
+		<div class="col-sm-9">
+			<select data-ng-model="newCustomer.c_cardType" class="form-control" required>
+				<option value="Visa">Visa</option>
+				<option value="Master">MasterCard</option>
+			</select>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardnumber" class="col-sm-3 control-label">Card Number</label>
+		<div class="col-sm-9">
+			<input type="tel" data-ng-model="newCustomer.c_cardNumber" size="25" autocomplete="off" class="form-control" placeholder="クレジットカード番号" required>
+		</div>
+	</div><!-- .form-group -->
+
+
+	<div class="form-group">
+		<label for="CVCNumber" class="col-sm-3 control-label">CVC Number</label>
+		<div class="col-sm-9">
+			<input type="tel" data-ng-model="newCustomer.c_cardCvc" size="25" autocomplete="off" class="form-control" placeholder="CVC番号" required>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Cardholder" class="col-sm-3 control-label">Card Holder Name</label>
+		<div class="col-sm-9">
+			<input type="text" data-ng-model="newCustomer.c_cardHolder" class="form-control" placeholder="カード名義人" required>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="CardMonth" class="col-sm-3 control-label">Expire Date</label>
+		<div class="col-sm-9">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<select data-ng-model="newCustomer.c_cardMonth" title="月" class="form-control inline" required>
+						<option value="01" selected="selected">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+						<option value="05">05</option>
+						<option value="06">06</option>
+						<option value="07">07</option>
+						<option value="08">08</option>
+						<option value="09">09</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
+				</div>
+				<div class="col-sm-6">
+					<select data-ng-model="newCustomer.c_cardYear" title="年" class="form-control inline" required>
+					    <option value="2014" selected="selected">2014</option>
+					    <option value="2015">2015</option>
+					    <option value="2016">2016</option>
+					    <option value="2017">2017</option>
+					    <option value="2018">2018</option>
+					    <option value="2019">2019</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div><!-- .form-group -->
+	
+
+	<h4>Billing Information</h4>
+
+	<div class="form-group">
+		<label for="Billingname" class="col-sm-3 control-label">Your Name</label>
+		<div class="col-sm-9">
+			<input type="text" data-ng-model="newCustomer.c_billingName" class="form-control" placeholder="お名前" required>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="Billingpostal" class="col-sm-3 control-label">Postal Code</label>
+		<div class="col-sm-9">
+			<input type="tel" data-ng-model="newCustomer.c_billingPostal" class="form-control" maxlength="10" placeholder="郵便番号" required>
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Billingstate" class="col-sm-3 control-label">都道府県</label>
+		<div class="col-sm-9">
+			<select data-ng-model="newCustomer.c_billingState" title="月" class="form-control" required>
+				<option value="" selected="selected">都道府県を選択</option>
+				<option value="北海道">北海道</option>
+				<option value="青森県">青森県</option>
+				<option value="岩手県">岩手県</option>
+				<option value="宮城県">宮城県</option>
+				<option value="秋田県">秋田県</option>
+			</select>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="Billingaddress1" class="col-sm-3 control-label">Address</label>
+		<div class="col-sm-9">
+			<input type="text" data-ng-model="newCustomer.c_billingAddress1" class="form-control" placeholder="住所" required>
+		</div>
+	</div><!-- .form-group -->
+	
+	<div class="form-group">
+		<label for="Billingaddress2" class="col-sm-3 control-label">Appertment or Building name</label>
+		<div class="col-sm-9">
+			<input type="text" data-ng-model="newCustomer.c_billingAddress2" class="form-control" placeholder="アパート名　部屋番号">
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<label for="Billingtel" class="col-sm-3 control-label">Phone Number</label>
+		<div class="col-sm-9">
+			<input type="tel" data-ng-model="newCustomer.c_billingTel" class="form-control" maxlength="20" placeholder="電話番号">
+		</div>
+	</div><!-- .form-group -->
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+			<button class="btn btn-primary" data-ng-click="addCustomer()">Confirm Button</button>
+			<a class="btn btn-default" href="#/">go back</a>
+		</div>
+	</div><!-- .form-group -->
+
+</form>
+<!-- Input Form End -->

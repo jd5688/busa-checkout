@@ -1,20 +1,7 @@
 var controllers = {};
 
 controllers.mainController = ['$scope', '$location', function ($scope, $location) {	
-	$scope.customers = [
-		{name: 'John Smith', city: 'Phoenix'}, 
-		{name: 'John Lennon', city: 'Batangas'}, 
-		{name: 'Jane Doe', city: 'Pasay'}, 
-		{name: 'John Doe', city: 'Annapolis'}
-	];
 
-	$scope.addCustomer = function () {
-		$scope.customers.push(
-			{
-				name: $scope.newCustomer.name,
-				city: $scope.newCustomer.city
-			});
-	}
 }];
 
 controllers.purchaseController = ['$scope', '$location', 'myService', function ($scope, $location, myService) {
